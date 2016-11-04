@@ -24,7 +24,15 @@ pem.createCertificate({days: 1, selfSigned: true}, function(err, keys) {
   app.use(express.static('../'));
 
   // Create an HTTPS service.
-  https.createServer(options, app).listen(8080);
+  var server = https.createServer(options, app).listen(8080);
+  var io = require('socket.io')(server);
 
+  io.on('connection', function (socket) {
+      console.log("socket connected");
+      socket.on('message', function (message) {
+          console.log(message);
+          socket.broadcast.send(message);
+      });
+  });
   console.log('serving on https://localhost:8080');
 });
