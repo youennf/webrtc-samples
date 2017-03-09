@@ -114,7 +114,7 @@ function gotDescription1(desc) {
   trace('Offer from pc1 \n' + desc.sdp);
   pc1.setLocalDescription(desc).then(
     function() {
-      desc.sdp = forceChosenAudioCodec(desc.sdp);
+      //desc.sdp = forceChosenAudioCodec(desc.sdp);
       socket.send(JSON.stringify({"type": "gotDescription1", data: desc}));
 
 //      pc2.setRemoteDescription(desc).then(
@@ -135,7 +135,7 @@ function gotDescription2(desc) {
   trace('Answer from pc2 \n' + desc.sdp);
   pc2.setLocalDescription(desc).then(
     function() {
-      desc.sdp = forceChosenAudioCodec(desc.sdp);
+      //desc.sdp = forceChosenAudioCodec(desc.sdp);
       socket.send(JSON.stringify({"type": "gotDescription2", data: desc}));
 //      pc1.setRemoteDescription(desc).then(
 //        function() {
